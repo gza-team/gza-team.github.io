@@ -5,13 +5,6 @@ local window = DrRayLibrary:Load("GZA TOOL", "14860587530")
 local tab = DrRayLibrary.newTab("Plugin", "14860587530")
 
 tab.newButton("Click Update Plugin", "Update New in 24/9/2023", function()
-    local key = ("local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
-
-local window = DrRayLibrary:Load("GZA TOOL", "14860587530")
-
-local tab = DrRayLibrary.newTab("Plugin", "14860587530")
-
-tab.newButton("Click Update Plugin", "Update New in 24/9/2023", function()
     local key = ("https://raw.githubusercontent.com/gza-team/vaule/main/Key")
 writefile("DeltaPlugins/plugingza.txt", key)
 end)
