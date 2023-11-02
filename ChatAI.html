@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prompt Girlfriend Chat</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.chat-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.chat-messages {
+    height: 200px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+  </style>
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+            <!-- Chat messages will appear here -->
+        </div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+      function sendMessage() {
+    const userMessage = document.getElementById("user-input").value;
+    appendMessage("You", userMessage);
+    document.getElementById("user-input").value = "";
+
+    // Replace 'YOUR_API_KEY' with your actual API key and implement the API call to your "Prompt Girlfriend" service.
+    const apiKey = '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';
+    const apiUrl = 'https://api.openai.com/prompt-girlfriend';
+
+    // Example: Send a user message to the server
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({ userMessage: userMessage }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        const botResponse = data.response; // Assuming the API returns a 'response' field
+        appendMessage("Prompt Girlfriend", botResponse);
+    })
+    .catch(error => console.error(error));
+}
+
+function appendMessage(sender, message) {
+    const chatMessages = document.getElementById("chat-messages");
+    const messageDiv = document.createElement("div");
+    messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+    </script>
+</body>
+</html>
